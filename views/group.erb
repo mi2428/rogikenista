@@ -1,0 +1,133 @@
+<% @title = "#{h @group.name} - 団体" %>
+<div>
+	<h2>Group</h2>
+	<table class="table table-striped">
+		<tbody>
+			<tr>
+				<th>グループID</th>
+				<td><%= @group.id %></td>
+			</tr>
+			<tr>
+				<th>名称</th>
+				<td><%= @group.name %></td>
+			</tr>
+			<tr>
+				<th>発足日</th>
+				<td><%= @group.inauguration_date %></td>
+			</tr>
+			<% if @group.breakup_date %>
+				<tr>
+					<th>解散日</th>
+					<td><%= @group.breakup_date %></td>
+				</tr>
+				<tr>
+					<th>解散理由</th>
+					<td><%= @group.breakup_reason %></td>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>
+</div>
+
+<div>
+	<h2>構成員</h2>
+	<h3>所属中</h3>
+	<% if @members_active.size > 0 %>
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>ユーザID</th>
+					<th>実名</th>
+					<th>スクリーンネーム</th>
+					<th>入学年度</th>
+					<th>加入日</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% @members_active.each do |member| %>
+					<tr>
+						<td style="text-align: center">
+							<a style="display: block" href="/users/<%= member.id %>"><%= member.id %></a>
+						</td>
+						<td><%= member.attributes['real_name'] %></td>
+						<td><a href="/users/<%= member.id %>"><%= member.attributes['screen_name'] %></a></td>
+						<td><%= member.attributes['entrance_year'] %></td>
+						<td><%= member.attributes['entrance_date'] %></td>
+					</tr>
+				<% end %>
+			</tbody>
+		</table>
+	<% else %>
+		<p>
+			アクティブな構成員は登録されていません。
+		</p>
+	<% end %>
+
+	<h3>脱退済</h3>
+	<% if @members_inactive.size > 0 %>
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>ユーザID</th>
+					<th>実名</th>
+					<th>スクリーンネーム</th>
+					<th>入学年度</th>
+					<th>加入日</th>
+					<th>脱退日</th>
+					<th>脱退理由</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% @members_inactive.each do |member| %>
+					<tr>
+						<td style="text-align: center">
+							<a style="display: block" href="/users/<%= member.id %>"><%= member.id %></a>
+						</td>
+						<td><%= member.attributes['real_name'] %></td>
+						<td><a href="/users/<%= member.id %>"><%= member.attributes['screen_name'] %></a></td>
+						<td><%= member.attributes['entrance_year'] %></td>
+						<td><%= member.attributes['entrance_date'] %></td>
+						<td><%= member.attributes['withdrawal_date'] %></td>
+						<td><%= member.attributes['withdrawal_reason'] %></td>
+					</tr>
+				<% end %>
+			</tbody>
+		</table>
+	<% else %>
+		<p>
+			脱退済構成員は登録されていません。
+		</p>
+	<% end %>
+</div>
+
+<div>
+	<h2>現役役職情報</h2>
+	<% if @charges_active.size > 0 %>
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>構成員</th>
+					<th>役職</th>
+					<th>年</th>
+					<th>就任日</th>
+					<th>説明</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% @charges_active.each do |charge| %>
+					<tr>
+						<td><a href="/users/<%= charge.user_id %>"><%= "#{charge.attributes['screen_name']} (ID=#{charge.user_id})" %></a></td>
+						<td><%= charge.name %></td>
+						<td><%= charge.year %></td>
+						<td><%= charge.inauguration_date %></td>
+						<td><%= charge.description %></td>
+					</tr>
+				<% end %>
+			</tbody>
+		</table>
+	<% else %>
+		<p>
+			現役の役職情報は登録されていません。
+		</p>
+	<% end %>
+</div>

@@ -1,0 +1,38 @@
+<% @title = 'ユーザ一覧' %>
+<div>
+	<h2>Users</h2>
+	<% if @users.size > 0 %>
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>ユーザID</th>
+					<th>種別</th>
+					<th>実名</th>
+					<th>実名 読み</th>
+					<th>スクリーンネーム</th>
+					<th>入学年度</th>
+					<th>外部組織所属情報</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% @users.each do |user| %>
+					<tr>
+						<td style="text-align: center">
+							<a style="display: block" href="/users/<%= user.id %>"><%= user.id %></a>
+						</td>
+						<td><%= user.attributes['user_type'] %></td>
+						<td><%= user.real_name %></td>
+						<td><%= user.real_name_pron %></td>
+						<td><%= user.screen_name %></td>
+						<td><%= user.entrance_year %></td>
+						<td><%= user.affiliation_outside %></td>
+					</tr>
+				<% end %>
+			</tbody>
+		</table>
+	<% else %>
+		<p>
+			ユーザは登録されていません。
+		</p>
+	<% end %>
+</div>

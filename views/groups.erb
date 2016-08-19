@@ -1,0 +1,34 @@
+<% @title = '団体一覧' %>
+<div>
+	<h2>Groups</h2>
+	<% if @groups.size > 0 %>
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>グループID</th>
+					<th>名称</th>
+					<th>説明</th>
+					<th>発足日</th>
+					<th>解散日</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% @groups.each do |group| %>
+					<tr>
+						<td style="text-align: center">
+							<a style="display: block" href="/groups/<%= group.id %>"><%= group.id %></a>
+						</td>
+						<td><%= group.name %></td>
+						<td><%= group.description %></td>
+						<td><%= group.inauguration_date %></td>
+						<td><%= group.breakup_date %></td>
+					</tr>
+				<% end %>
+			</tbody>
+		</table>
+	<% else %>
+		<p>
+			団体は登録されていません。
+		</p>
+	<% end %>
+</div>

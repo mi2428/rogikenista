@@ -1,0 +1,160 @@
+<% @title = "#{h @user.screen_name} - ユーザ" %>
+<div>
+	<h2>User</h2>
+	<table class="table table-striped">
+		<tbody>
+			<tr>
+				<th>ユーザID</th>
+				<td><%= @user.id %></td>
+			</tr>
+			<tr>
+				<th>種別</th>
+				<td><%= @user_type.name %></td>
+			</tr>
+			<tr>
+				<th>実名</th>
+				<td><%= @user.real_name %></td>
+			</tr>
+			<tr>
+				<th>実名読み</th>
+				<td><%= @user.real_name_pron %></td>
+			</tr>
+			<tr>
+				<th>スクリーンネーム</th>
+				<td><%= @user.screen_name %></td>
+			</tr>
+			<tr>
+				<th>入学年度</th>
+				<td><%= @user.entrance_year %></td>
+			</tr>
+			<tr>
+				<th>外部組織所属情報</th>
+				<td><%= @user.affiliation_outside %></td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+<div>
+	<h2>所属組織</h2>
+	<h3>所属中</h3>
+	<% if @groups_active.size > 0 %>
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>組織名</th>
+					<th>説明</th>
+					<th>加入日</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% @groups_active.each do |group| %>
+					<tr>
+						<td><a href="/groups/<%= group.group_id %>"><%= group.attributes['name'] %></a></td>
+						<td><%= group.attributes['description'] %></td>
+						<td><%= group.attributes['entrance_date'] %></td>
+					</tr>
+				<% end %>
+			</tbody>
+		</table>
+	<% else %>
+		<p>
+			所属情報は登録されていません。
+		</p>
+	<% end %>
+	<h3>脱退済</h3>
+	<% if @groups_inactive.size > 0 %>
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>組織名</th>
+					<th>説明</th>
+					<th>加入日</th>
+					<th>脱退日</th>
+					<th>脱退理由</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% @groups_inactive.each do |group| %>
+					<tr>
+						<td><a href="/groups/<%= group.group_id %>"><%= group.attributes['name'] %></a></td>
+						<td><%= group.attributes['description'] %></td>
+						<td><%= group.attributes['entrance_date'] %></td>
+						<td><%= group.attributes['withdrawal_date'] %></td>
+						<td><%= group.attributes['withdrawal_reason'] %></td>
+					</tr>
+				<% end %>
+			</tbody>
+		</table>
+	<% else %>
+		<p>
+			脱退情報は登録されていません。
+		</p>
+	<% end %>
+</div>
+
+<div>
+	<h2>役職情報</h2>
+	<% if @charges.size > 0 %>
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>組織</th>
+					<th>役職</th>
+					<th>年</th>
+					<th>就任日</th>
+					<th>退任日</th>
+					<th>退任理由</th>
+					<th>説明</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% @charges.each do |charge| %>
+					<tr>
+						<td><a href="/groups/<%= charge.group_id %>"><%= charge.attributes['group_name'] %></a></td>
+						<td><%= charge.name %></td>
+						<td><%= charge.year %></td>
+						<td><%= charge.inauguration_date %></td>
+						<td><%= charge.retirement_date %></td>
+						<td><%= charge.retirement_reason %></td>
+						<td><%= charge.description %></td>
+					</tr>
+				<% end %>
+			</tbody>
+		</table>
+	<% else %>
+		<p>
+			役職情報は登録されていません。
+		</p>
+	<% end %>
+</div>
+
+<div>
+	<h2>連絡先</h2>
+	<% if @contacts.size > 0 %>
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>手段</th>
+					<th>アカウント情報</th>
+					<th>アカウント説明</th>
+					<th>手段説明</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% @contacts.each do |contact| %>
+					<tr>
+						<td><%= contact.attributes['tool_name'] %></td>
+						<td><%= contact.data %></td>
+						<td><%= contact.description %></td>
+						<td><%= contact.attributes['description'] %></td>
+					</tr>
+				<% end %>
+			</tbody>
+		</table>
+	<% else %>
+		<p>
+			連絡先は登録されていません。
+		</p>
+	<% end %>
+</div>
