@@ -16,7 +16,7 @@
 				<% @groups.each do |group| %>
 					<tr>
 						<td style="text-align: center">
-							<a style="display: block" href="/groups/<%= group.id %>"><%= group.id %></a>
+							<a style="display: block" href="<%= url "/groups/#{group.id}" %>"><%= group.id %></a>
 						</td>
 						<td><%= group.name %></td>
 						<td><%= group.description %></td>

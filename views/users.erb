@@ -18,7 +18,7 @@
 				<% @users.each do |user| %>
 					<tr>
 						<td style="text-align: center">
-							<a style="display: block" href="/users/<%= user.id %>"><%= user.id %></a>
+							<a style="display: block" href="<%= url "/users/#{user.id}" %>"><%= user.id %></a>
 						</td>
 						<td><%= user.attributes['user_type'] %></td>
 						<td><%= user.real_name %></td>

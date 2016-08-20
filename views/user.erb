@@ -50,7 +50,7 @@
 			<tbody>
 				<% @groups_active.each do |group| %>
 					<tr>
-						<td><a href="/groups/<%= group.group_id %>"><%= group.attributes['name'] %></a></td>
+						<td><a href="<%= url "/groups/#{group.group_id}" %>"><%= group.attributes['name'] %></a></td>
 						<td><%= group.attributes['description'] %></td>
 						<td><%= group.attributes['entrance_date'] %></td>
 					</tr>
@@ -77,7 +77,7 @@
 			<tbody>
 				<% @groups_inactive.each do |group| %>
 					<tr>
-						<td><a href="/groups/<%= group.group_id %>"><%= group.attributes['name'] %></a></td>
+						<td><a href="<%= url "/groups/#{group.group_id}" %>"><%= group.attributes['name'] %></a></td>
 						<td><%= group.attributes['description'] %></td>
 						<td><%= group.attributes['entrance_date'] %></td>
 						<td><%= group.attributes['withdrawal_date'] %></td>
@@ -111,7 +111,7 @@
 			<tbody>
 				<% @charges.each do |charge| %>
 					<tr>
-						<td><a href="/groups/<%= charge.group_id %>"><%= charge.attributes['group_name'] %></a></td>
+						<td><a href="<%= url "/groups/#{charge.group_id}" %>"><%= charge.attributes['group_name'] %></a></td>
 						<td><%= charge.name %></td>
 						<td><%= charge.year %></td>
 						<td><%= charge.inauguration_date %></td>

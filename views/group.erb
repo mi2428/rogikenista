@@ -47,10 +47,10 @@
 				<% @members_active.each do |member| %>
 					<tr>
 						<td style="text-align: center">
-							<a style="display: block" href="/users/<%= member.id %>"><%= member.id %></a>
+							<a style="display: block" href="<%= url "/users/#{member.id}" %>"><%= member.id %></a>
 						</td>
 						<td><%= member.attributes['real_name'] %></td>
-						<td><a href="/users/<%= member.id %>"><%= member.attributes['screen_name'] %></a></td>
+						<td><a href="<%= url "/users/#{member.id}" %>"><%= member.attributes['screen_name'] %></a></td>
 						<td><%= member.attributes['entrance_year'] %></td>
 						<td><%= member.attributes['entrance_date'] %></td>
 					</tr>
@@ -81,10 +81,10 @@
 				<% @members_inactive.each do |member| %>
 					<tr>
 						<td style="text-align: center">
-							<a style="display: block" href="/users/<%= member.id %>"><%= member.id %></a>
+							<a style="display: block" href="<%= url "/users/#{member.id}" %>"><%= member.id %></a>
 						</td>
 						<td><%= member.attributes['real_name'] %></td>
-						<td><a href="/users/<%= member.id %>"><%= member.attributes['screen_name'] %></a></td>
+						<td><a href="<%= url "/users/#{member.id}" %>"><%= member.attributes['screen_name'] %></a></td>
 						<td><%= member.attributes['entrance_year'] %></td>
 						<td><%= member.attributes['entrance_date'] %></td>
 						<td><%= member.attributes['withdrawal_date'] %></td>
@@ -116,7 +116,7 @@
 			<tbody>
 				<% @charges_active.each do |charge| %>
 					<tr>
-						<td><a href="/users/<%= charge.user_id %>"><%= "#{charge.attributes['screen_name']} (ID=#{charge.user_id})" %></a></td>
+						<td><a href="<%= url "/users/#{charge.user_id}" %>"><%= "#{charge.attributes['screen_name']} (ID=#{charge.user_id})" %></a></td>
 						<td><%= charge.name %></td>
 						<td><%= charge.year %></td>
 						<td><%= charge.inauguration_date %></td>
