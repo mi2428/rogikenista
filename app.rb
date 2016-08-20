@@ -25,14 +25,13 @@ get '/' do
 end
 
 get '/users' do
-  @users = User.order('id DESC').joins(:user_type).select('users.*, user_types.name AS user_type')
+  @users = User.order('id DESC')
 
   erb :users
 end
 
 get '/users/:id' do
   @user = User.find(params[:id])
-  @user_type = UserType.find(@user.user_type_id)
   groups = GroupUser.joins(:group).where(user_id: params[:id]).select('group_users.*, groups.*')
   @groups_active = groups.order('group_users.entrance_date DESC').where(withdrawal_date: nil)
   @groups_inactive = groups.order('group_users.withdrawal_date DESC').where.not(withdrawal_date: nil)

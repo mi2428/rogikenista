@@ -1,16 +1,8 @@
 # encoding: utf-8
 
-class UserType < ActiveRecord::Base
-  validates :name, presence: true, uniqueness: true
-
-  has_many :users, dependent: :restrict_with_error
-end
-
 class User < ActiveRecord::Base
-  validates :user_type_id, presence: true
   validates :screen_name, presence: true
 
-  belongs_to :user_type
   has_many :groups, through: :category_products
   has_many :charges
   has_many :contacts

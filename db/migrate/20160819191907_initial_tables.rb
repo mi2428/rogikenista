@@ -1,14 +1,6 @@
 class InitialTables < ActiveRecord::Migration[5.0]
   def change
-    create_table :user_types do |t|
-      t.string :name, null: false
-      t.string :description
-    end
-
-    add_index :user_types, :name, unique: true
-
     create_table :users do |t|
-      t.references :user_type, null: false
       t.string :real_name
       t.string :real_name_pron
       t.string :screen_name, null: false

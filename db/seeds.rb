@@ -2,26 +2,20 @@
 
 require './db/models.rb'
 
-user_type_human = UserType.create(:name => '人間', :description => '人間')
-user_type_bot = UserType.create(:name => 'bot', :description => 'bot')
-
 taro = User.create(
-  :user_type_id => user_type_human.id,
   :real_name => '東工大 太郎',
   :real_name_pron => 'トウコウダイ タロウ',
   :screen_name => 'ぽよ太郎',
   :entrance_year => 1999)
 
 mabo = User.create(
-  :user_type_id => user_type_human.id,
   :real_name => '麻婆 豆腐',
   :real_name_pron => 'マーボウ ドウフ',
   :screen_name => '○ー○○',
   :entrance_year => 2014)
 
 the_bot = User.create(
-  :user_type_id => user_type_bot.id,
-  :screen_name => 'ザ・bot',
+  :screen_name => 'ザ・ダミー',
   :entrance_year => 2016)
 
 rogiken = Group.create(

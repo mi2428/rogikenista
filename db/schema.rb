@@ -71,14 +71,7 @@ ActiveRecord::Schema.define(version: 20160819191907) do
     t.index ["name"], name: "index_groups_on_name"
   end
 
-  create_table "user_types", force: :cascade do |t|
-    t.string "name",        null: false
-    t.string "description"
-    t.index ["name"], name: "index_user_types_on_name", unique: true
-  end
-
   create_table "users", force: :cascade do |t|
-    t.integer  "user_type_id",        null: false
     t.string   "real_name"
     t.string   "real_name_pron"
     t.string   "screen_name",         null: false
@@ -89,7 +82,6 @@ ActiveRecord::Schema.define(version: 20160819191907) do
     t.index ["real_name"], name: "index_users_on_real_name"
     t.index ["real_name_pron"], name: "index_users_on_real_name_pron"
     t.index ["screen_name"], name: "index_users_on_screen_name"
-    t.index ["user_type_id"], name: "index_users_on_user_type_id"
   end
 
 end
